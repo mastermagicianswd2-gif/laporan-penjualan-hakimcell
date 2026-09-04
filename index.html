@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGEN HAKIM CELL</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #ef4444, #f97316, #eab308);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .premium-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(249, 115, 22, 0.5);
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(249, 115, 22, 0.8);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden custom-scroll">
+
+  <!-- Efek Hiasan Latar Premium (Glowing Circles) -->
+  <div class="absolute w-[40rem] h-[40rem] rounded-full bg-red-600/10 blur-[120px] -top-48 -left-48 pointer-events-none"></div>
+  <div class="absolute w-[30rem] h-[30rem] rounded-full bg-yellow-500/10 blur-[120px] top-1/2 right-0 pointer-events-none"></div>
+
+  <!-- CONTAINER UTAMA -->
+  <div id="app" class="relative z-10 min-h-screen flex flex-col">
+
+    <!-- HEADER NAVIGATION BAR -->
+    <header id="main-header" class="hidden premium-card border-b border-slate-800 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-orange-500/20">
+            <i data-lucide="smartphone" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <span class="text-lg font-extrabold tracking-wide text-white block">AGEN HAKIM CELL</span>
+            <span id="user-store-badge" class="text-xs text-orange-400 font-medium tracking-wider uppercase">Toko Demo</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="hidden md:block text-right">
+            <p id="user-display-name" class="text-sm font-semibold text-slate-200">Nama User</p>
+            <p id="user-display-role" class="text-xs text-slate-400 capitalize">Role</p>
+          </div>
+          <button onclick="handleLogout()" class="p-2.5 rounded-xl bg-slate-800/80 hover:bg-red-950/40 text-slate-400 hover:text-red-400 border border-slate-700 hover:border-red-900 transition-all duration-300">
+            <i data-lucide="log-out" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT PORT -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col justify-center">
+
+      <!-- ==================== VIEW 1: LOGIN ==================== -->
+      <section id="view-login" class="w-full max-w-md mx-auto my-auto py-8">
+        <div class="premium-card rounded-3xl p-8 shadow-2xl shadow-black/50 border border-slate-800">
+          <div class="text-center mb-8">
+            <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center shadow-xl shadow-orange-500/20 mx-auto mb-4">
+              <i data-lucide="smartphone" class="w-10 h-10 text-white animate-pulse"></i>
+            </div>
+            <h1 class="text-2xl font-extrabold text-white tracking-tight">AGEN HAKIM CELL</h1>
+            <p class="text-slate-400 text-sm mt-1">Sistem Laporan & Manajemen Penjualan</p>
+          </div>
+
+          <!-- Form Login -->
+          <form id="form-login" onsubmit="handleLoginSubmit(event)" class="space-y-5">
+            <div>
+              <label class="block text-xs font-bold tracking-wider uppercase text-slate-300 mb-2">Username</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="user" class="w-5 h-5"></i>
+                </div>
+                <input type="text" id="login-username" required class="w-full pl-11 pr-4 py-3 bg-slate-900/90 border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all placeholder-slate-500 text-white text-sm" placeholder="Masukkan username Anda">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold tracking-wider uppercase text-slate-300 mb-2">Password</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="lock" class="w-5 h-5"></i>
+                </div>
+                <input type="password" id="login-password" required class="w-full pl-11 pr-4 py-3 bg-slate-900/90 border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all placeholder-slate-500 text-white text-sm" placeholder="Masukkan password Anda">
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 px-4 rounded-xl gradient-bg font-bold text-white hover:opacity-95 shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] text-sm flex items-center justify-center space-x-2">
+              <span>Masuk Aplikasi</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </form>
+
+          <!-- Registrasi Admin -->
+          <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+            <p class="text-xs text-slate-400">
+              Belum punya akun admin? 
+              <button onclick="switchView('register')" class="text-orange-400 font-bold hover:underline transition-all">Daftar Admin</button>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 2: REGISTER ADMIN ==================== -->
+      <section id="view-register" class="hidden w-full max-w-md mx-auto my-auto py-8">
+        <div class="premium-card rounded-3xl p-8 shadow-2xl shadow-black/50 border border-slate-800">
+          <div class="text-center mb-8">
+            <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-orange-500/20 mx-auto mb-3">
+              <i data-lucide="user-plus" class="w-6 h-6 text-white"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white">Registrasi Akun Admin</h2>
+            <p class="text-slate-400 text-xs mt-1">Buat akun pengelola utama AGEN HAKIM CELL</p>
+          </div>
+
+          <form id="form-register" onsubmit="handleRegisterSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold tracking-wider uppercase text-slate-300 mb-1.5">Nama Pemilik</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="user" class="w-4 h-4"></i>
+                </div>
+                <input type="text" id="reg-nama" required class="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white text-sm" placeholder="Nama Lengkap Pemilik">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold tracking-wider uppercase text-slate-300 mb-1.5">Nama Toko / Konter</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="store" class="w-4 h-4"></i>
+                </div>
+                <input type="text" id="reg-toko" required class="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white text-sm" placeholder="Contoh: HAKIM CELL">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold tracking-wider uppercase text-slate-300 mb-1.5">Username</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="at-sign" class="w-4 h-4"></i>
+                </div>
+                <input type="text" id="reg-username" required class="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white text-sm" placeholder="Username untuk login">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold tracking-wider uppercase text-slate-300 mb-1.5">Password</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="lock" class="w-4 h-4"></i>
+                </div>
+                <input type="password" id="reg-password" required class="w-full pl-10 pr-4 py-2.5 bg-slate-900/90 border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white text-sm" placeholder="Sandi minimal 4 karakter">
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 px-4 rounded-xl gradient-bg font-bold text-white hover:opacity-95 shadow-lg shadow-orange-600/30 transition-all duration-300 text-sm flex items-center justify-center space-x-2">
+              <span>Daftar Sekarang</span>
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <button onclick="switchView('login')" class="text-xs text-slate-400 hover:text-white font-medium inline-flex items-center space-x-1.5">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+              <span>Kembali ke Halaman Login</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 3: ADMIN DASHBOARD ==================== -->
+      <section id="view-admin" class="hidden space-y-6">
+        
+        <!-- TABS NAVIGASI -->
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex space-x-2 overflow-x-auto pb-1 max-w-full">
+            <button id="tab-btn-dashboard" onclick="switchAdminTab('dashboard')" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-red-600 to-orange-500 text-white flex items-center space-x-2 transition-all">
+              <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              <span>Rekapitulasi Penjualan</span>
+            </button>
+            <button id="tab-btn-agents" onclick="switchAdminTab('agents')" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 flex items-center space-x-2 border border-slate-800 transition-all">
+              <i data-lucide="users" class="w-4 h-4"></i>
+              <span>Manajemen Agen</span>
+            </button>
+          </div>
+          <span class="hidden lg:inline-flex px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-bold rounded-full border border-orange-500/20 uppercase tracking-wide">
+            Panel Admin Utama
+          </span>
+        </div>
+
+        <!-- TAB CONTENT: DASHBOARD & REKAPITULASI -->
+        <div id="admin-tab-dashboard" class="space-y-6">
+          
+          <!-- FILTERS PANEL -->
+          <div class="premium-card p-5 rounded-2xl border border-slate-800 space-y-4">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="sliders" class="w-5 h-5 text-orange-500"></i>
+              <h3 class="text-sm font-extrabold text-white uppercase tracking-wider">Filter Laporan Dinamis</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Filter Period -->
+              <div>
+                <label class="block text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">Rentang Waktu</label>
+                <select id="filter-period" onchange="handlePeriodChange()" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                  <option value="harian">Harian (Pilih Tanggal)</option>
+                  <option value="mingguan">Mingguan (Rentang Tanggal)</option>
+                  <option value="bulanan" selected>Bulanan (Pilih Bulan)</option>
+                </select>
+              </div>
+
+              <!-- Dynamic Period Input -->
+              <div id="dynamic-period-picker-container">
+                <!-- Akan dirender dinamis di JavaScript (Date Picker / Month Picker) -->
+              </div>
+
+              <!-- Filter Agen -->
+              <div>
+                <label class="block text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">Pilih Agen</label>
+                <select id="filter-agent" onchange="applyAdminFilters()" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                  <option value="all">Semua Agen</option>
+                </select>
+              </div>
+
+              <!-- Filter Reset / Info -->
+              <div class="flex items-end">
+                <button onclick="resetAdminFilters()" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 rounded-xl px-4 py-2 text-sm text-slate-300 font-bold transition-all flex items-center justify-center space-x-2 cursor-pointer">
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-orange-400"></i>
+                  <span>Reset Filter</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ANALYTICS CARDS (REKAPITULASI) -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Card 1: Total Omset -->
+            <div class="premium-card p-5 rounded-2xl border-l-4 border-l-red-500 flex flex-col justify-between shadow-lg">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Omset</span>
+                <div class="p-1.5 bg-red-500/10 rounded-lg text-red-400">
+                  <i data-lucide="trending-up" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p id="stat-omset" class="text-lg sm:text-2xl font-black text-white">Rp 0</p>
+                <p class="text-[10px] text-slate-500 mt-1">Hasil penjualan kotor</p>
+              </div>
+            </div>
+
+            <!-- Card 2: Total Modal -->
+            <div class="premium-card p-5 rounded-2xl border-l-4 border-l-orange-500 flex flex-col justify-between shadow-lg">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Modal</span>
+                <div class="p-1.5 bg-orange-500/10 rounded-lg text-orange-400">
+                  <i data-lucide="wallet" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p id="stat-modal" class="text-lg sm:text-2xl font-black text-white">Rp 0</p>
+                <p class="text-[10px] text-slate-500 mt-1">Uang modal produk</p>
+              </div>
+            </div>
+
+            <!-- Card 3: Total Keuntungan -->
+            <div class="premium-card p-5 rounded-2xl border-l-4 border-l-yellow-500 flex flex-col justify-between shadow-lg">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Untung</span>
+                <div class="p-1.5 bg-yellow-500/10 rounded-lg text-yellow-400">
+                  <i data-lucide="badge-dollar-sign" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p id="stat-untung" class="text-lg sm:text-2xl font-black text-emerald-400">Rp 0</p>
+                <p id="stat-untung-percent" class="text-[10px] text-slate-400 mt-1 font-semibold">0% Profit Margin</p>
+              </div>
+            </div>
+
+            <!-- Card 4: Total Transaksi -->
+            <div class="premium-card p-5 rounded-2xl border-l-4 border-l-slate-500 flex flex-col justify-between shadow-lg">
+              <div class="flex justify-between items-start">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Transaksi</span>
+                <div class="p-1.5 bg-slate-500/10 rounded-lg text-slate-400">
+                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <p id="stat-transaksi" class="text-lg sm:text-2xl font-black text-white">0 Tx</p>
+                <p class="text-[10px] text-slate-500 mt-1">Transaksi sukses terlaporkan</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIWAYAT ALIRAN TRANSAKSI TABLE -->
+          <div class="premium-card rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
+            <div class="p-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="history" class="w-5 h-5 text-yellow-500"></i>
+                <h3 class="font-extrabold text-sm uppercase tracking-wider text-white">Riwayat Transaksi Penjualan</h3>
+              </div>
+              <span id="transaction-count-badge" class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-400 self-start sm:self-auto font-medium">Menampilkan 0 Transaksi</span>
+            </div>
+
+            <div class="overflow-x-auto custom-scroll">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-900/60 border-b border-slate-800 text-[11px] font-bold tracking-wider uppercase text-slate-400">
+                    <th class="p-4">Tanggal & Waktu</th>
+                    <th class="p-4">ID Transaksi</th>
+                    <th class="p-4">Nama Agen</th>
+                    <th class="p-4">Nama Produk</th>
+                    <th class="p-4 text-right">Modal</th>
+                    <th class="p-4 text-right">Harga Jual</th>
+                    <th class="p-4 text-right text-emerald-400">Profit</th>
+                    <th class="p-4 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-sales-tbody" class="divide-y divide-slate-800/50 text-xs">
+                  <!-- Rendered dynamically by Javascript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB CONTENT: MANAJEMEN AGEN -->
+        <div id="admin-tab-agents" class="hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- REGISTER AGENT FORM -->
+            <div class="premium-card p-6 rounded-2xl border border-slate-800 h-fit space-y-4">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="user-plus" class="w-5 h-5 text-orange-500"></i>
+                <h3 class="font-bold text-white text-base">Daftarkan Agen Baru</h3>
+              </div>
+              <p class="text-xs text-slate-400">Buat akun untuk mitra agen pulsa/paket data Anda di bawah naungan toko utama.</p>
+
+              <form id="form-register-agent" onsubmit="handleAgentRegisterSubmit(event)" class="space-y-3">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nama Agen</label>
+                  <input type="text" id="agent-nama" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Nama Lengkap Agen">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nama Toko Agen</label>
+                  <input type="text" id="agent-toko" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Contoh: Rian Cell">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Username Login</label>
+                  <input type="text" id="agent-username" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Gunakan huruf kecil & angka">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Password</label>
+                  <input type="password" id="agent-password" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-600 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Sandi minimal 4 karakter">
+                </div>
+                
+                <button type="submit" class="w-full py-2.5 px-4 rounded-xl gradient-bg font-bold text-white hover:opacity-95 shadow-md shadow-orange-600/25 transition-all text-xs flex items-center justify-center space-x-1.5">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                  <span>Daftarkan Mitra Agen</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- AGENTS TABLE LIST -->
+            <div class="premium-card rounded-2xl border border-slate-800 overflow-hidden shadow-xl lg:col-span-2 flex flex-col">
+              <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="users" class="w-5 h-5 text-orange-500"></i>
+                  <h3 class="font-extrabold text-sm uppercase tracking-wider text-white">Daftar Mitra Agen Anda</h3>
+                </div>
+                <button onclick="loadAdminDashboard()" class="p-1.5 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-lg text-slate-400 hover:text-white transition-all">
+                  <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <div class="overflow-x-auto flex-grow custom-scroll">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-900/60 border-b border-slate-800 text-[11px] font-bold tracking-wider uppercase text-slate-400">
+                      <th class="p-4">Nama Agen</th>
+                      <th class="p-4">Nama Toko</th>
+                      <th class="p-4">Username</th>
+                      <th class="p-4 text-right">Saldo Modal</th>
+                      <th class="p-4 text-center">Aksi Pengaturan</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-agents-tbody" class="divide-y divide-slate-800/50 text-xs">
+                    <!-- Rendered dynamically by Javascript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== VIEW 4: AGENT DASHBOARD ==================== -->
+      <section id="view-agent" class="hidden space-y-6">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- LEFT COLLUMN: AGENT SALDO & LAPORAN FORM -->
+          <div class="space-y-6">
+            
+            <!-- REAL-TIME SALDO MODAL CARD -->
+            <div class="premium-card p-6 rounded-3xl border border-slate-800 text-center relative overflow-hidden shadow-2xl">
+              <div class="absolute w-24 h-24 bg-orange-500/10 rounded-full blur-2xl top-0 right-0"></div>
+              <span class="text-[10px] font-black uppercase tracking-widest text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">Sisa Saldo Modal Kerja</span>
+              
+              <div class="my-6">
+                <h2 id="agent-display-saldo" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Rp 0</h2>
+                <p class="text-xs text-slate-500 mt-2">Disediakan & dipantau oleh Admin Pusat</p>
+              </div>
+
+              <!-- Petunjuk Saldo Kurang -->
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-[11px] text-slate-400 flex items-start space-x-2 text-left">
+                <i data-lucide="info" class="w-4 h-4 text-yellow-500 shrink-0 mt-0.5"></i>
+                <span>Jika saldo menipis, mohon segera hubungi pemilik utama (Admin) untuk dilakukan penambahan saldo modal kerja.</span>
+              </div>
+            </div>
+
+            <!-- SALES REPORT FORM -->
+            <div class="premium-card p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-500">
+                  <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                </div>
+                <h3 class="font-bold text-white text-base">Kirim Laporan Penjualan</h3>
+              </div>
+
+              <form id="form-submit-sale" onsubmit="handleSaleSubmit(event)" class="space-y-4">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nama Produk / Pulsa / Paket</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                      <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    </div>
+                    <input type="text" id="sale-produk" required class="w-full pl-9 pr-3 py-2 bg-slate-900 border border-slate-700/80 rounded-xl text-xs text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600" placeholder="Contoh: Paket XL Hotrod 10GB">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Harga Modal (Rp)</label>
+                    <input type="number" id="sale-modal" oninput="calculateLiveProfit()" required min="1" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600" placeholder="Biaya Modal">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Harga Jual (Rp)</label>
+                    <input type="number" id="sale-jual" oninput="calculateLiveProfit()" required min="1" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent placeholder-slate-600" placeholder="Harga ke Konsumen">
+                  </div>
+                </div>
+
+                <!-- LIVE PROFIT ESTIMATOR -->
+                <div class="bg-slate-900/90 rounded-2xl p-4 border border-slate-800 space-y-1.5 transition-all">
+                  <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    <span>Estimasi Keuntungan</span>
+                    <span id="profit-badge" class="text-emerald-400 px-1.5 py-0.5 rounded bg-emerald-500/10">0% Profit Margin</span>
+                  </div>
+                  <div class="flex justify-between items-baseline">
+                    <span id="live-profit-val" class="text-lg font-black text-emerald-400">Rp 0</span>
+                    <span class="text-[10px] text-slate-500">Live Kalkulator</span>
+                  </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 px-4 rounded-xl gradient-bg font-extrabold text-white hover:opacity-95 shadow-lg shadow-orange-600/30 transition-all duration-300 text-xs flex items-center justify-center space-x-1.5">
+                  <i data-lucide="send" class="w-4 h-4 animate-bounce"></i>
+                  <span>Kirim Laporan Transaksi</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLLUMN: AGENT RECENT SALES HISTORY -->
+          <div class="premium-card rounded-3xl border border-slate-800 shadow-2xl lg:col-span-2 overflow-hidden flex flex-col">
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="list-checks" class="w-5 h-5 text-yellow-500"></i>
+                <h3 class="font-extrabold text-sm uppercase tracking-wider text-white">Laporan Transaksi Anda</h3>
+              </div>
+              <button onclick="loadAgentDashboard()" class="p-1.5 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-lg text-slate-400 hover:text-white transition-all">
+                <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="overflow-x-auto flex-grow custom-scroll max-h-[30rem] lg:max-h-[38rem]">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-slate-900/60 border-b border-slate-800 text-[11px] font-bold tracking-wider uppercase text-slate-400 sticky top-0 z-10">
+                    <th class="p-4 bg-slate-900/90">Waktu</th>
+                    <th class="p-4 bg-slate-900/90">Produk</th>
+                    <th class="p-4 text-right bg-slate-900/90">Modal</th>
+                    <th class="p-4 text-right bg-slate-900/90">Harga Jual</th>
+                    <th class="p-4 text-right text-emerald-400 bg-slate-900/90">Untung</th>
+                    <th class="p-4 text-center bg-slate-900/90">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="agent-sales-tbody" class="divide-y divide-slate-800/50 text-xs">
+                  <!-- Rendered dynamically by Javascript -->
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="p-4 bg-slate-900/40 border-t border-slate-800 text-center text-[11px] text-slate-500">
+              Menampilkan seluruh riwayat penjualan Anda secara real-time.
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="premium-card border-t border-slate-900/60 py-4 text-center text-xs text-slate-600 mt-12">
+      <div class="max-w-7xl mx-auto px-4">
+        &copy; 2026 <span class="font-extrabold text-slate-500">AGEN HAKIM CELL</span>. Crafted with ❤️ & Premium Design.
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==================== FRONTEND CONTROLLER JAVASCRIPT ==================== -->
+  <script>
+    // Konfigurasi State Aplikasi Global
+    const state = {
+      user: null, // Berisi { namaPemilik/namaAgen, namaToko, username, saldoModal (jika agen) }
+      role: '', // 'admin' atau 'agent'
+      view: 'login', // 'login', 'register', 'admin', 'agent'
+      adminTab: 'dashboard', // 'dashboard', 'agents'
+      adminDataCache: null, // { agents: [], sales: [] }
+      agentDataCache: null, // { saldoModal: 0, namaToko: '', namaAgen: '', sales: [] }
+      filter: {
+        period: 'bulanan', // 'harian', 'mingguan', 'bulanan'
+        dateVal: '', // YYYY-MM-DD
+        monthVal: '', // YYYY-MM
+        startDateVal: '', // YYYY-MM-DD (Kustom Mingguan)
+        endDateVal: '', // YYYY-MM-DD (Kustom Mingguan)
+        agentUsername: 'all'
+      }
+    };
+
+    // Deteksi apakah dijalankan sebagai Apps Script yang valid atau di preview browser mandiri
+    const isAppsScript = typeof google !== 'undefined' && typeof google.script !== 'undefined' && typeof google.script.run !== 'undefined';
+
+    // ==================== LOCAL PREVIEW MOCK BACKEND ====================
+    // Dibuat khusus agar aplikasi 100% berfungsi visual/simulasinya di workspace Canvas/local browser tanpa error.
+    const mockDb = {
+      admins: JSON.parse(localStorage.getItem('hakim_admins')) || [
+        { 'Nama Pemilik': 'Hakim', 'Nama Toko': 'HAKIM CELL PUSAT', 'Username': 'admin', 'Password': '123', 'Tanggal Daftar': '2026-07-09T12:00:00.000Z' }
+      ],
+      agents: JSON.parse(localStorage.getItem('hakim_agents')) || [
+        { 'Nama Agen': 'Budi', 'Nama Toko': 'Budi Cell', 'Username': 'budi', 'Password': '123', 'Saldo Modal': 1500000, 'Dibuat Oleh': 'admin', 'Tanggal Daftar': '2026-07-09T13:00:00.000Z' },
+        { 'Nama Agen': 'Citra', 'Nama Toko': 'Citra Pulsa', 'Username': 'citra', 'Password': '123', 'Saldo Modal': 300000, 'Dibuat Oleh': 'admin', 'Tanggal Daftar': '2026-07-09T14:00:00.000Z' }
+      ],
+      sales: JSON.parse(localStorage.getItem('hakim_sales')) || [
+        { 'ID Transaksi': 'TX-1', 'Username Agen': 'budi', 'Nama Produk': 'Pulsa Telkomsel 50k', 'Modal': 51000, 'Harga Jual': 53000, 'Keuntungan': 2000, 'Tanggal Transaksi': '2026-07-09T14:30:00.000Z' },
+        { 'ID Transaksi': 'TX-2', 'Username Agen': 'citra', 'Nama Produk': 'Token Listrik 100k', 'Modal': 101500, 'Harga Jual': 104000, 'Keuntungan': 2500, 'Tanggal Transaksi': '2026-07-09T15:00:00.000Z' }
+      ],
+      save() {
+        localStorage.setItem('hakim_admins', JSON.stringify(this.admins));
+        localStorage.setItem('hakim_agents', JSON.stringify(this.agents));
+        localStorage.setItem('hakim_sales', JSON.stringify(this.sales));
+      }
+    };
+
+    // Pintu panggil server yang otomatis mendeteksi ekosistem running
+    function callBackend(functionName, ...args) {
+      return new Promise((resolve, reject) => {
+        if (isAppsScript) {
+          google.script.run
+            .withSuccessHandler(res => resolve(res))
+            .withFailureHandler(err => {
+              console.error("Backend Error:", err);
+              reject(err);
+            })[functionName](...args);
+        } else {
+          // Simulasi proses database lokal (dengan sedikit jeda agar loading state terlihat premium)
+          setTimeout(() => {
+            try {
+              const res = simulateMockBackend(functionName, args);
+              resolve(res);
+            } catch (err) {
+              reject(err);
+            }
+          }, 300);
+        }
+      });
+    }
+
+    // Mesin simulasi backend lokal
+    function simulateMockBackend(func, args) {
+      if (func === 'initDatabase') {
+        mockDb.save();
+        return { success: true, message: "Mock Database Sukses Diinisialisasi di LocalStorage!" };
+      }
+      
+      if (func === 'registerAdmin') {
+        const [nama, toko, user, pass] = args;
+        const exists = mockDb.admins.some(a => a['Username'].toLowerCase() === user.toLowerCase()) || 
+                       mockDb.agents.some(g => g['Username'].toLowerCase() === user.toLowerCase());
+        if (exists) return { success: false, message: "Username '" + user + "' sudah digunakan!" };
+        mockDb.admins.push({
+          'Nama Pemilik': nama,
+          'Nama Toko': toko,
+          'Username': user,
+          'Password': pass,
+          'Tanggal Daftar': new Date().toISOString()
+        });
+        mockDb.save();
+        return { success: true, message: "Pendaftaran Admin berhasil!" };
+      }
+
+      if (func === 'loginUser') {
+        const [user, pass] = args;
+        const uLower = user.toLowerCase();
+        
+        const admin = mockDb.admins.find(a => a['Username'].toLowerCase() === uLower && a['Password'] === pass);
+        if (admin) {
+          return {
+            success: true,
+            role: 'admin',
+            userData: { namaPemilik: admin['Nama Pemilik'], namaToko: admin['Nama Toko'], username: admin['Username'] }
+          };
+        }
+        
+        const agent = mockDb.agents.find(g => g['Username'].toLowerCase() === uLower && g['Password'] === pass);
+        if (agent) {
+          return {
+            success: true,
+            role: 'agent',
+            userData: { namaAgen: agent['Nama Agen'], namaToko: agent['Nama Toko'], username: agent['Username'], saldoModal: agent['Saldo Modal'] }
+          };
+        }
+        return { success: false, message: "Username atau password salah!" };
+      }
+
+      if (func === 'registerAgent') {
+        const [nama, toko, user, pass, adminUser] = args;
+        const exists = mockDb.admins.some(a => a['Username'].toLowerCase() === user.toLowerCase()) || 
+                       mockDb.agents.some(g => g['Username'].toLowerCase() === user.toLowerCase());
+        if (exists) return { success: false, message: "Username '" + user + "' sudah digunakan!" };
+        mockDb.agents.push({
+          'Nama Agen': nama,
+          'Nama Toko': toko,
+          'Username': user,
+          'Password': pass,
+          'Saldo Modal': 0,
+          'Dibuat Oleh': adminUser,
+          'Tanggal Daftar': new Date().toISOString()
+        });
+        mockDb.save();
+        return { success: true, message: "Agen '" + nama + "' berhasil didaftarkan!" };
+      }
+
+      if (func === 'deleteAgent') {
+        const [agentUser] = args;
+        const idx = mockDb.agents.findIndex(g => g['Username'].toLowerCase() === agentUser.toLowerCase());
+        if (idx !== -1) {
+          mockDb.agents.splice(idx, 1);
+          mockDb.save();
+          return { success: true, message: "Agen '" + agentUser + "' berhasil dihapus!" };
+        }
+        return { success: false, message: "Agen tidak ditemukan!" };
+      }
+
+      if (func === 'updateAgentBalance') {
+        const [agentUser, newBal] = args;
+        const agent = mockDb.agents.find(g => g['Username'].toLowerCase() === agentUser.toLowerCase());
+        if (agent) {
+          agent['Saldo Modal'] = parseFloat(newBal);
+          mockDb.save();
+          return { success: true, message: "Saldo berhasil diubah!" };
+        }
+        return { success: false, message: "Agen tidak ditemukan!" };
+      }
+
+      if (func === 'submitSale') {
+        const [agentUser, namaProd, modalVal, jualVal] = args;
+        const agent = mockDb.agents.find(g => g['Username'].toLowerCase() === agentUser.toLowerCase());
+        if (!agent) return { success: false, message: "Agen tidak ditemukan!" };
+        
+        const cModal = parseFloat(modalVal);
+        const cJual = parseFloat(jualVal);
+        const curSaldo = parseFloat(agent['Saldo Modal'] || 0);
+        
+        if (cModal > curSaldo) {
+          return { 
+            success: false, 
+            message: "DITOLAK: Saldo modal tidak mencukupi!\nSisa Saldo Anda: Rp " + curSaldo.toLocaleString('id-ID') + "\nHarga Modal Transaksi: Rp " + cModal.toLocaleString('id-ID')
+          };
+        }
+        
+        agent['Saldo Modal'] = curSaldo - cModal;
+        const txId = "TX-" + Date.now() + "-" + Math.floor(Math.random() * 100);
+        mockDb.sales.push({
+          'ID Transaksi': txId,
+          'Username Agen': agentUser,
+          'Nama Produk': namaProd,
+          'Modal': cModal,
+          'Harga Jual': cJual,
+          'Keuntungan': cJual - cModal,
+          'Tanggal Transaksi': new Date().toISOString()
+        });
+        mockDb.save();
+        return { success: true, message: "Laporan berhasil terkirim!", updatedSaldo: agent['Saldo Modal'] };
+      }
+
+      if (func === 'editSale') {
+        const [txId, namaProd, newM, newJ] = args;
+        const sale = mockDb.sales.find(s => s['ID Transaksi'] === txId);
+        if (!sale) return { success: false, message: "Transaksi tidak ditemukan!" };
+
+        const agentUser = sale['Username Agen'];
+        const agent = mockDb.agents.find(g => g['Username'].toLowerCase() === agentUser.toLowerCase());
+        if (!agent) return { success: false, message: "Agen tidak ditemukan!" };
+
+        const oldM = parseFloat(sale['Modal'] || 0);
+        const diff = parseFloat(newM) - oldM;
+        const currentSaldo = parseFloat(agent['Saldo Modal'] || 0);
+
+        if (diff > currentSaldo) {
+          return { 
+            success: false, 
+            message: "DITOLAK: Sisa saldo modal agen tidak mencukupi!\nSisa Saldo: Rp " + currentSaldo.toLocaleString('id-ID') + "\nKurang saldo sebesar: Rp " + (diff - currentSaldo).toLocaleString('id-ID')
+          };
+        }
+
+        agent['Saldo Modal'] = currentSaldo - diff;
+        sale['Nama Produk'] = namaProd;
+        sale['Modal'] = parseFloat(newM);
+        sale['Harga Jual'] = parseFloat(newJ);
+        sale['Keuntungan'] = parseFloat(newJ) - parseFloat(newM);
+
+        mockDb.save();
+        return { success: true, message: "Transaksi berhasil diperbarui!", updatedSaldo: agent['Saldo Modal'] };
+      }
+
+      if (func === 'deleteSale') {
+        const [txId] = args;
+        const idx = mockDb.sales.findIndex(s => s['ID Transaksi'] === txId);
+        if (idx === -1) return { success: false, message: "Transaksi tidak ditemukan!" };
+
+        const sale = mockDb.sales[idx];
+        const agentUser = sale['Username Agen'];
+        const oldM = parseFloat(sale['Modal'] || 0);
+
+        const agent = mockDb.agents.find(g => g['Username'].toLowerCase() === agentUser.toLowerCase());
+        if (agent) {
+          agent['Saldo Modal'] = parseFloat(agent['Saldo Modal'] || 0) + oldM;
+        }
+
+        mockDb.sales.splice(idx, 1);
+        mockDb.save();
+        return { success: true, message: "Transaksi berhasil dihapus dan saldo modal telah dikembalikan!" };
+      }
+
+      if (func === 'getAdminDashboardData') {
+        const [adminUser] = args;
+        // Ambil agen berdasarkan pembuat (adminUser) dengan fleksibilitas key
+        const agents = mockDb.agents.filter(g => {
+          const dibuatOleh = g['Dibuat Oleh'] || g['dibuat oleh'] || '';
+          return dibuatOleh.toLowerCase() === adminUser.toLowerCase();
+        }).map(g => ({
+          namaAgen: g['Nama Agen'] || g['nama agen'] || '',
+          namaToko: g['Nama Toko'] || g['nama toko'] || '',
+          username: g['Username'] || g['username'] || '',
+          saldoModal: parseFloat(g['Saldo Modal'] || g['saldo modal'] || 0),
+          tanggalDaftar: g['Tanggal Daftar'] || g['tanggal daftar'] || ''
+        }));
+        
+        const agentUsersList = agents.map(a => a.username.toLowerCase());
+        const sales = mockDb.sales.filter(s => {
+          const uAgen = (s['Username Agen'] || s['username agen'] || '').toString().toLowerCase();
+          return agentUsersList.indexOf(uAgen) !== -1;
+        }).map(s => ({
+          idTransaksi: s['ID Transaksi'] || s['id transaksi'] || '',
+          usernameAgen: s['Username Agen'] || s['username agen'] || '',
+          namaProduk: s['Nama Produk'] || s['nama produk'] || '',
+          modal: parseFloat(s['Modal'] || s['modal'] || 0),
+          hargaJual: parseFloat(s['Harga Jual'] || s['harga jual'] || 0),
+          keuntungan: parseFloat(s['Keuntungan'] || s['keuntungan'] || 0),
+          tanggalTransaksi: s['Tanggal Transaksi'] || s['tanggal transaksi'] || ''
+        }));
+        return { agents, sales };
+      }
+
+      if (func === 'getAgentDashboardData') {
+        const [agentUser] = args;
+        const agent = mockDb.agents.find(g => g['Username'].toLowerCase() === agentUser.toLowerCase());
+        if (!agent) return { saldoModal: 0, namaToko: '', namaAgen: '', sales: [] };
+        
+        const sales = mockDb.sales.filter(s => s['Username Agen'].toLowerCase() === agentUser.toLowerCase()).map(s => ({
+          idTransaksi: s['ID Transaksi'] || s['id transaksi'] || '',
+          namaProduk: s['Nama Produk'] || s['nama produk'] || '',
+          modal: parseFloat(s['Modal'] || s['modal'] || 0),
+          hargaJual: parseFloat(s['Harga Jual'] || s['harga jual'] || 0),
+          keuntungan: parseFloat(s['Keuntungan'] || s['keuntungan'] || 0),
+          tanggalTransaksi: s['Tanggal Transaksi'] || s['tanggal transaksi'] || ''
+        }));
+        return {
+          saldoModal: agent['Saldo Modal'] || 0,
+          namaToko: agent['Nama Toko'] || '',
+          namaAgen: agent['Nama Agen'] || '',
+          sales: sales
+        };
+      }
+
+      return null;
+    }
+
+    // ==================== INISIALISASI PERTAMA KALI ====================
+    window.addEventListener('DOMContentLoaded', () => {
+      // Inisialisasi ikon Lucide
+      lucide.createIcons();
+
+      // Atur default tanggal untuk filter
+      const today = new Date();
+      const monday = getMonday(today);
+      state.filter.dateVal = today.toISOString().split('T')[0];
+      state.filter.monthVal = today.toISOString().substring(0, 7); // Format: YYYY-MM
+      state.filter.startDateVal = monday.toISOString().split('T')[0];
+      state.filter.endDateVal = today.toISOString().split('T')[0];
+      
+      // Render picker input periode dinamis pertama kali
+      renderDynamicPeriodPicker();
+
+      // PENGECEKAN PERSISTENSI LOGIN SESI (Mengatasi Bug Logout Otomatis Saat Refresh)
+      const storedSession = localStorage.getItem('hakim_logged_in_user');
+      if (storedSession) {
+        try {
+          const session = JSON.parse(storedSession);
+          if (session && session.user && session.role) {
+            state.user = session.user;
+            state.role = session.role;
+            switchView(state.role);
+            if (state.role === 'admin') {
+              loadAdminDashboard();
+            } else if (state.role === 'agent') {
+              loadAgentDashboard();
+            }
+            return; // Lewati halaman login jika berhasil me-restore sesi
+          }
+        } catch (e) {
+          console.error("Gagal me-restore sesi user:", e);
+          localStorage.removeItem('hakim_logged_in_user');
+        }
+      }
+
+      // Jika tidak ada sesi, pastikan tetap di halaman login
+      switchView('login');
+    });
+
+    // ==================== TAMPILAN CONTROLLER (SWITCH VIEW) ====================
+    function switchView(viewName) {
+      state.view = viewName;
+      
+      // Daftar views
+      const views = {
+        'login': document.getElementById('view-login'),
+        'register': document.getElementById('view-register'),
+        'admin': document.getElementById('view-admin'),
+        'agent': document.getElementById('view-agent')
+      };
+
+      // Matikan semua view
+      for (let k in views) {
+        if (views[k]) views[k].classList.add('hidden');
+      }
+
+      // Aktifkan view target
+      if (views[viewName]) {
+        views[viewName].classList.remove('hidden');
+      }
+
+      // Header Kontrol
+      const header = document.getElementById('main-header');
+      if (viewName === 'admin' || viewName === 'agent') {
+        header.classList.remove('hidden');
+        document.getElementById('user-display-name').innerText = state.role === 'admin' ? state.user.namaPemilik : state.user.namaAgen;
+        document.getElementById('user-display-role').innerText = state.role;
+        document.getElementById('user-store-badge').innerText = state.user.namaToko;
+      } else {
+        header.classList.add('hidden');
+      }
+
+      lucide.createIcons();
+    }
+
+    // ==================== SUBMIT LOGIN HANDLER (DENGAN SAVE SESSION) ====================
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      const u = document.getElementById('login-username').value.trim();
+      const p = document.getElementById('login-password').value;
+
+      Swal.fire({
+        title: 'Memverifikasi Kredensial',
+        text: 'Mohon tunggu sebentar...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      callBackend('loginUser', u, p)
+        .then(res => {
+          if (res.success) {
+            state.user = res.userData;
+            state.role = res.role;
+            
+            // Simpan informasi sesi ke dalam Local Storage untuk ketahanan refresh
+            localStorage.setItem('hakim_logged_in_user', JSON.stringify({
+              user: res.userData,
+              role: res.role
+            }));
+
+            Swal.fire({
+              title: 'Login Sukses!',
+              text: 'Selamat datang kembali, ' + (res.role === 'admin' ? res.userData.namaPemilik : res.userData.namaAgen),
+              icon: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            });
+
+            // Alihkan view berdasarkan role
+            if (res.role === 'admin') {
+              switchView('admin');
+              loadAdminDashboard();
+            } else {
+              switchView('agent');
+              loadAgentDashboard();
+            }
+          } else {
+            Swal.fire({
+              title: 'Login Gagal',
+              text: res.message,
+              icon: 'error',
+              confirmButtonColor: '#ef4444'
+            });
+          }
+        })
+        .catch(err => {
+          Swal.fire({
+            title: 'Kesalahan Sistem',
+            text: 'Gagal menghubungi backend untuk login. Silakan coba kembali.',
+            icon: 'error',
+            confirmButtonColor: '#ef4444'
+          });
+        });
+    }
+
+    // ==================== SUBMIT REGISTER ADMIN HANDLER ====================
+    function handleRegisterSubmit(event) {
+      event.preventDefault();
+      const nama = document.getElementById('reg-nama').value.trim();
+      const toko = document.getElementById('reg-toko').value.trim();
+      const user = document.getElementById('reg-username').value.trim();
+      const pass = document.getElementById('reg-password').value;
+
+      if (pass.length < 4) {
+        Swal.fire({ icon: 'warning', title: 'Password Terlalu Pendek', text: 'Sandi minimal harus terdiri dari 4 karakter.', confirmButtonColor: '#f97316' });
+        return;
+      }
+
+      Swal.fire({
+        title: 'Mendaftarkan Akun',
+        text: 'Membuat kredensial Admin, silakan tunggu.',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      callBackend('registerAdmin', nama, toko, user, pass)
+        .then(res => {
+          if (res.success) {
+            Swal.fire({
+              title: 'Pendaftaran Sukses!',
+              text: res.message,
+              icon: 'success',
+              confirmButtonColor: '#f97316'
+            }).then(() => {
+              document.getElementById('form-register').reset();
+              switchView('login');
+            });
+          } else {
+            Swal.fire({
+              title: 'Registrasi Gagal',
+              text: res.message,
+              icon: 'error',
+              confirmButtonColor: '#ef4444'
+            });
+          }
+        })
+        .catch(err => {
+          Swal.fire({
+            title: 'Error',
+            text: 'Gagal melakukan pendaftaran admin.',
+            icon: 'error',
+            confirmButtonColor: '#ef4444'
+          });
+        });
+    }
+
+    // ==================== LOGOUT HANDLER (HAPUS SESEION) ====================
+    function handleLogout() {
+      Swal.fire({
+        title: 'Yakin Keluar?',
+        text: 'Sesi aktif Anda pada perangkat ini akan diakhiri.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Keluar!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Bersihkan local storage session
+          localStorage.removeItem('hakim_logged_in_user');
+          state.user = null;
+          state.role = '';
+          document.getElementById('form-login').reset();
+          switchView('login');
+          Swal.fire({
+            title: 'Selesai!',
+            text: 'Anda berhasil keluar secara aman.',
+            icon: 'success',
+            timer: 1200,
+            showConfirmButton: false
+          });
+        }
+      });
+    }
+
+    // =========================================================================
+    // SISI ADMIN: MANAJEMEN TAB & OPERASI
+    // =========================================================================
+    function switchAdminTab(tabName) {
+      state.adminTab = tabName;
+      const tabDashboard = document.getElementById('admin-tab-dashboard');
+      const tabAgents = document.getElementById('admin-tab-agents');
+      
+      const btnDashboard = document.getElementById('tab-btn-dashboard');
+      const btnAgents = document.getElementById('tab-btn-agents');
+
+      if (tabName === 'dashboard') {
+        tabDashboard.classList.remove('hidden');
+        tabAgents.classList.add('hidden');
+        btnDashboard.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-red-600 to-orange-500 text-white flex items-center space-x-2 transition-all";
+        btnAgents.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 flex items-center space-x-2 border border-slate-800 transition-all";
+        loadAdminDashboard();
+      } else {
+        tabDashboard.classList.add('hidden');
+        tabAgents.classList.remove('hidden');
+        btnDashboard.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 flex items-center space-x-2 border border-slate-800 transition-all";
+        btnAgents.className = "px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-red-600 to-orange-500 text-white flex items-center space-x-2 transition-all";
+        loadAdminDashboard(); // Tarik & perbarui data agen secara real-time pada tab manajemen agen
+      }
+      lucide.createIcons();
+    }
+
+    // LOAD UTAMA DATA ADMIN
+    function loadAdminDashboard() {
+      if (!state.user) return;
+      
+      // Ambil data real-time
+      callBackend('getAdminDashboardData', state.user.username)
+        .then(data => {
+          state.adminDataCache = data;
+          
+          // Populate Dropdown Agen
+          populateAgentFilterDropdown(data.agents);
+          // Jalankan Filter & Rekapitulasi visual
+          applyAdminFilters();
+          // Render data tabel agen
+          renderAgentsTable();
+        })
+        .catch(err => {
+          console.error("Gagal memuat dashboard admin:", err);
+        });
+    }
+
+    // REGISTRASI AGEN OLEH ADMIN
+    function handleAgentRegisterSubmit(event) {
+      event.preventDefault();
+      const nama = document.getElementById('agent-nama').value.trim();
+      const toko = document.getElementById('agent-toko').value.trim();
+      const user = document.getElementById('agent-username').value.trim();
+      const pass = document.getElementById('agent-password').value;
+
+      Swal.fire({
+        title: 'Mendaftarkan Agen',
+        text: 'Menghubungkan ke server database...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      callBackend('registerAgent', nama, toko, user, pass, state.user.username)
+        .then(res => {
+          if (res.success) {
+            Swal.fire({ title: 'Registrasi Berhasil!', text: res.message, icon: 'success', confirmButtonColor: '#f97316' });
+            document.getElementById('form-register-agent').reset();
+            loadAdminDashboard(); // Tarik ulang database agar agen baru langsung muncul
+          } else {
+            Swal.fire({ title: 'Gagal', text: res.message, icon: 'error', confirmButtonColor: '#ef4444' });
+          }
+        })
+        .catch(err => {
+          Swal.fire({ title: 'Error', text: 'Gagal mendaftarkan agen baru.', icon: 'error', confirmButtonColor: '#ef4444' });
+        });
+    }
+
+    // HAPUS MITRA AGEN OLEH ADMIN
+    function triggerDeleteAgent(username) {
+      Swal.fire({
+        title: 'Hapus Akun Agen?',
+        text: `Data Agen '${username}' akan dihapus permanen. Seluruh pencatatan transaksi yang bersangkutan akan tetap ada namun hubungan kemitraan akan dihentikan.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Memproses Penghapusan...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+          });
+
+          callBackend('deleteAgent', username)
+            .then(res => {
+              if (res.success) {
+                Swal.fire({ title: 'Sukses Terhapus!', text: res.message, icon: 'success', confirmButtonColor: '#f97316' });
+                loadAdminDashboard(); // Refresh database
+              } else {
+                Swal.fire({ title: 'Gagal', text: res.message, icon: 'error', confirmButtonColor: '#ef4444' });
+              }
+            })
+            .catch(err => {
+              Swal.fire({ title: 'Error', text: 'Terjadi kegagalan saat mencoba menghapus agen.', icon: 'error', confirmButtonColor: '#ef4444' });
+            });
+        }
+      });
+    }
+
+    // ATUR SALDO MODAL AGEN VIA SWEETALERT PROMPT (Atasi Bug Tampilan & Real-time update)
+    function triggerSetSaldo(username, currentSaldo) {
+      Swal.fire({
+        title: 'Atur Saldo Modal Agen',
+        html: `
+          <div class="text-left space-y-2 text-xs">
+            <p><strong>Username Agen:</strong> ${username}</p>
+            <p><strong>Saldo Saat Ini:</strong> Rp ${currentSaldo.toLocaleString('id-ID')}</p>
+            <p class="text-slate-400 mt-2">Masukkan nominal saldo modal kerja baru untuk agen ini:</p>
+          </div>
+        `,
+        input: 'number',
+        inputPlaceholder: 'Nominal Saldo (Rp)',
+        inputAttributes: {
+          min: '0',
+          step: '1000'
+        },
+        inputValue: currentSaldo,
+        showCancelButton: true,
+        confirmButtonColor: '#f97316',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Simpan Saldo',
+        cancelButtonText: 'Batal',
+        preConfirm: (value) => {
+          if (!value || isNaN(value) || parseFloat(value) < 0) {
+            Swal.showValidationMessage('Masukkan nominal angka saldo yang valid!');
+          }
+          return value;
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const newBal = parseFloat(result.value);
+          
+          Swal.fire({
+            title: 'Memperbarui Saldo',
+            text: 'Harap tunggu sebentar...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+          });
+
+          callBackend('updateAgentBalance', username, newBal)
+            .then(res => {
+              if (res.success) {
+                Swal.fire({ title: 'Saldo Diperbarui!', text: res.message, icon: 'success', confirmButtonColor: '#f97316' });
+                loadAdminDashboard(); // Refresh seluruh data real-time
+              } else {
+                Swal.fire({ title: 'Gagal', text: res.message, icon: 'error', confirmButtonColor: '#ef4444' });
+              }
+            })
+            .catch(err => {
+              Swal.fire({ title: 'Error', text: 'Terjadi masalah saat mengatur saldo agen.', icon: 'error', confirmButtonColor: '#ef4444' });
+            });
+        }
+      });
+    }
+
+    // POPULASI DROPDOWN SELEKSI AGEN DI FILTER
+    function populateAgentFilterDropdown(agents) {
+      const select = document.getElementById('filter-agent');
+      const currentSelected = select.value;
+      
+      // Opsi default
+      select.innerHTML = '<option value="all">Semua Agen</option>';
+      
+      agents.forEach(a => {
+        const opt = document.createElement('option');
+        opt.value = a.username;
+        opt.innerText = `${a.namaAgen} (${a.namaToko})`;
+        select.appendChild(opt);
+      });
+
+      // Kembalikan seleksi jika agen masih ada dalam data terpopulasi
+      if (agents.some(a => a.username === currentSelected)) {
+        select.value = currentSelected;
+      }
+    }
+
+    // RENDER TABEL DAFTAR AGEN (SISI ADMIN)
+    function renderAgentsTable() {
+      const tbody = document.getElementById('admin-agents-tbody');
+      tbody.innerHTML = '';
+      
+      if (!state.adminDataCache || !state.adminDataCache.agents || state.adminDataCache.agents.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-8 text-center text-slate-500 font-medium">
+              <i data-lucide="users" class="w-8 h-8 mx-auto mb-2 opacity-30 text-yellow-500"></i>
+              Belum ada agen terdaftar di bawah pengawasan Anda.
+            </td>
+          </tr>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      state.adminDataCache.agents.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-900/40 border-b border-slate-800/40 transition-all";
+        tr.innerHTML = `
+          <td class="p-4 font-bold text-white">${a.namaAgen}</td>
+          <td class="p-4 text-slate-300 font-medium">${a.namaToko}</td>
+          <td class="p-4 text-orange-400 font-mono">${a.username}</td>
+          <td class="p-4 text-right font-semibold text-slate-100">Rp ${a.saldoModal.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-center">
+            <div class="flex items-center justify-center gap-2">
+              <button onclick="triggerSetSaldo('${a.username}', ${a.saldoModal})" class="px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-red-600 to-orange-500 hover:opacity-95 text-white font-bold text-[10px] transition-all flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                <span>Atur Saldo</span>
+              </button>
+              <button onclick="triggerDeleteAgent('${a.username}')" class="px-2.5 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/40 text-red-400 hover:text-red-200 border border-red-900/60 font-bold text-[10px] transition-all flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <span>Hapus</span>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    // RENDER DINAMIS PICKER PERIODE (Fitur Kustomisasi Mingguan Dari - Sampai Sesuai Pilihan)
+    function renderDynamicPeriodPicker() {
+      const container = document.getElementById('dynamic-period-picker-container');
+      const period = document.getElementById('filter-period').value;
+      
+      container.innerHTML = '';
+
+      if (period === 'harian') {
+        container.innerHTML = `
+          <label class="block text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">Pilih Tanggal</label>
+          <input type="date" id="filter-date" onchange="handleDateValChange(this.value)" value="${state.filter.dateVal}" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+        `;
+      } else if (period === 'bulanan') {
+        container.innerHTML = `
+          <label class="block text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">Pilih Bulan</label>
+          <input type="month" id="filter-month" onchange="handleMonthValChange(this.value)" value="${state.filter.monthVal}" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+        `;
+      } else if (period === 'mingguan') {
+        // Implementasi kustomisasi range mingguan dari tanggal berapa sampai tanggal berapa
+        container.innerHTML = `
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">Dari Tanggal</label>
+              <input type="date" id="filter-start-date" onchange="handleStartDateChange(this.value)" value="${state.filter.startDateVal}" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-2 py-2 text-xs text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">Sampai Tanggal</label>
+              <input type="date" id="filter-end-date" onchange="handleEndDateChange(this.value)" value="${state.filter.endDateVal}" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-2 py-2 text-xs text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Ambil tanggal senin dalam minggu berjalan
+    function getMonday(d) {
+      d = new Date(d);
+      const day = d.getDay();
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      return new Date(d.setDate(diff));
+    }
+
+    // Handle Perubahan Period Dropdown
+    function handlePeriodChange() {
+      state.filter.period = document.getElementById('filter-period').value;
+      renderDynamicPeriodPicker();
+      applyAdminFilters();
+    }
+
+    function handleDateValChange(val) {
+      state.filter.dateVal = val;
+      applyAdminFilters();
+    }
+
+    function handleMonthValChange(val) {
+      state.filter.monthVal = val;
+      applyAdminFilters();
+    }
+
+    function handleStartDateChange(val) {
+      state.filter.startDateVal = val;
+      applyAdminFilters();
+    }
+
+    function handleEndDateChange(val) {
+      state.filter.endDateVal = val;
+      applyAdminFilters();
+    }
+
+    function resetAdminFilters() {
+      const today = new Date();
+      const monday = getMonday(today);
+      state.filter.period = 'bulanan';
+      state.filter.dateVal = today.toISOString().split('T')[0];
+      state.filter.monthVal = today.toISOString().substring(0, 7);
+      state.filter.startDateVal = monday.toISOString().split('T')[0];
+      state.filter.endDateVal = today.toISOString().split('T')[0];
+      state.filter.agentUsername = 'all';
+
+      document.getElementById('filter-period').value = 'bulanan';
+      document.getElementById('filter-agent').value = 'all';
+      
+      renderDynamicPeriodPicker();
+      applyAdminFilters();
+    }
+
+    // MESIN PENYARING (FILTERING) TRANSAKSI DI SISI FRONTEND (RULE 2 COMPLIANT)
+    function applyAdminFilters() {
+      if (!state.adminDataCache || !state.adminDataCache.sales) return;
+
+      const agentFilter = document.getElementById('filter-agent').value;
+      const period = state.filter.period;
+      const dateVal = state.filter.dateVal;
+      const monthVal = state.filter.monthVal;
+
+      // Filter Transaksi
+      const filteredSales = state.adminDataCache.sales.filter(s => {
+        // 1. Saring berdasarkan Agen
+        if (agentFilter !== 'all' && s.usernameAgen.toLowerCase() !== agentFilter.toLowerCase()) {
+          return false;
+        }
+
+        // 2. Saring berdasarkan Tanggal / Waktu
+        const txDate = new Date(s.tanggalTransaksi);
+        
+        if (period === 'harian') {
+          if (!dateVal) return true;
+          const targetDate = new Date(dateVal);
+          return txDate.getFullYear() === targetDate.getFullYear() &&
+                 txDate.getMonth() === targetDate.getMonth() &&
+                 txDate.getDate() === targetDate.getDate();
+        } 
+        
+        else if (period === 'bulanan') {
+          if (!monthVal) return true;
+          const parts = monthVal.split('-'); // [YYYY, MM]
+          const targetYear = parseInt(parts[0]);
+          const targetMonth = parseInt(parts[1]) - 1; // 0-based
+          return txDate.getFullYear() === targetYear && txDate.getMonth() === targetMonth;
+        } 
+        
+        else if (period === 'mingguan') {
+          // Range custom mingguan: Dari Tanggal s/d Sampai Tanggal
+          const startVal = state.filter.startDateVal;
+          const endVal = state.filter.endDateVal;
+          
+          if (!startVal && !endVal) return true;
+          
+          let checkStart = true;
+          let checkEnd = true;
+          
+          if (startVal) {
+            const startD = new Date(startVal);
+            startD.setHours(0,0,0,0);
+            checkStart = txDate >= startD;
+          }
+          if (endVal) {
+            const endD = new Date(endVal);
+            endD.setHours(23,59,59,999);
+            checkEnd = txDate <= endD;
+          }
+          return checkStart && checkEnd;
+        }
+
+        return true;
+      });
+
+      // Hitung Ulang Indikator Keuangan (Rekapitulasi)
+      let totalOmset = 0;
+      let totalModal = 0;
+      let totalUntung = 0;
+      let totalTx = filteredSales.length;
+
+      filteredSales.forEach(s => {
+        totalOmset += s.hargaJual;
+        totalModal += s.modal;
+        totalUntung += s.keuntungan;
+      });
+
+      const profitMarginPercent = totalOmset > 0 ? Math.round((totalUntung / totalOmset) * 100) : 0;
+
+      // Update Tampilan Stats Card
+      document.getElementById('stat-omset').innerText = "Rp " + totalOmset.toLocaleString('id-ID');
+      document.getElementById('stat-modal').innerText = "Rp " + totalModal.toLocaleString('id-ID');
+      document.getElementById('stat-untung').innerText = "Rp " + totalUntung.toLocaleString('id-ID');
+      document.getElementById('stat-untung-percent').innerText = `${profitMarginPercent}% Margin Keuntungan`;
+      document.getElementById('stat-transaksi').innerText = `${totalTx} Transaksi`;
+
+      // Render Riwayat Transaksi Tabel Terfilter
+      const tbody = document.getElementById('admin-sales-tbody');
+      tbody.innerHTML = '';
+      document.getElementById('transaction-count-badge').innerText = `Menampilkan ${totalTx} Transaksi`;
+
+      if (filteredSales.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="p-8 text-center text-slate-500 font-medium">
+              <i data-lucide="alert-circle" class="w-8 h-8 mx-auto mb-2 opacity-30 text-yellow-500"></i>
+              Tidak menemukan riwayat transaksi penjualan untuk filter terpilih.
+            </td>
+          </tr>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      // Urutkan transaksi dari yang paling baru
+      filteredSales.sort((a, b) => new Date(b.tanggalTransaksi) - new Date(a.tanggalTransaksi));
+
+      filteredSales.forEach(s => {
+        const dateObj = new Date(s.tanggalTransaksi);
+        const formattedDate = dateObj.toLocaleDateString('id-ID', {day: '2-digit', month: 'short', year: 'numeric'}) + ' ' + 
+                              dateObj.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'});
+        
+        // Cari nama agen riil untuk visualisasi premium
+        const agentObj = state.adminDataCache.agents.find(a => a.username.toLowerCase() === s.usernameAgen.toLowerCase());
+        const agentDisplayName = agentObj ? `${agentObj.namaAgen} (${agentObj.namaToko})` : s.usernameAgen;
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-900/40 border-b border-slate-800/40 transition-all";
+        tr.innerHTML = `
+          <td class="p-4 text-slate-400 font-medium">${formattedDate}</td>
+          <td class="p-4 text-xs font-mono text-orange-400 font-semibold">${s.idTransaksi}</td>
+          <td class="p-4 text-slate-200 font-bold">${agentDisplayName}</td>
+          <td class="p-4 text-slate-300">${s.namaProduk}</td>
+          <td class="p-4 text-right text-slate-400">Rp ${s.modal.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-right text-slate-100 font-bold">Rp ${s.hargaJual.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-right font-black text-emerald-400">Rp ${s.keuntungan.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-center">
+            <div class="flex items-center justify-center gap-1.5">
+              <button onclick="triggerEditSale('${s.idTransaksi}', '${s.namaProduk}', ${s.modal}, ${s.hargaJual})" class="p-1.5 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 transition-all cursor-pointer">
+                <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="triggerDeleteSale('${s.idTransaksi}')" class="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-all cursor-pointer">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+
+    // =========================================================================
+    // SISI AGEN: DASHBOARD & PENGIRIMAN LAPORAN
+    // =========================================================================
+    function loadAgentDashboard() {
+      if (!state.user) return;
+
+      callBackend('getAgentDashboardData', state.user.username)
+        .then(data => {
+          state.agentDataCache = data;
+          
+          // Render Saldo Modal Real-time
+          document.getElementById('agent-display-saldo').innerText = "Rp " + data.saldoModal.toLocaleString('id-ID');
+          
+          // Render tabel transaksi pribadi
+          renderAgentSalesTable(data.sales);
+        })
+        .catch(err => {
+          console.error("Gagal memuat dashboard agen:", err);
+        });
+    }
+
+    // LIVE PROFIT ESTIMATOR CALCULATOR
+    function calculateLiveProfit() {
+      const modal = parseFloat(document.getElementById('sale-modal').value) || 0;
+      const jual = parseFloat(document.getElementById('sale-jual').value) || 0;
+      const profitVal = document.getElementById('live-profit-val');
+      const badge = document.getElementById('profit-badge');
+
+      const profit = jual - modal;
+      const profitPercent = modal > 0 ? Math.round((profit / modal) * 100) : 0;
+
+      profitVal.innerText = "Rp " + profit.toLocaleString('id-ID');
+      
+      if (profit < 0) {
+        profitVal.className = "text-lg font-black text-red-400";
+        badge.innerText = `${profitPercent}% Kerugian`;
+        badge.className = "text-red-400 px-1.5 py-0.5 rounded bg-red-500/10";
+      } else {
+        profitVal.className = "text-lg font-black text-emerald-400";
+        badge.innerText = `+${profitPercent}% Profit`;
+        badge.className = "text-emerald-400 px-1.5 py-0.5 rounded bg-emerald-500/10";
+      }
+    }
+
+    // SUBMIT LAPORAN PENJUALAN AGEN
+    function handleSaleSubmit(event) {
+      event.preventDefault();
+      const produk = document.getElementById('sale-produk').value.trim();
+      const modal = parseFloat(document.getElementById('sale-modal').value);
+      const jual = parseFloat(document.getElementById('sale-jual').value);
+
+      if (modal <= 0 || jual <= 0) {
+        Swal.fire({ icon: 'warning', title: 'Data Salah', text: 'Harga Modal dan Harga Jual harus lebih besar dari 0!', confirmButtonColor: '#f97316' });
+        return;
+      }
+
+      // Validasi Saldo Awal di sisi Frontend
+      const curSaldo = state.agentDataCache ? state.agentDataCache.saldoModal : state.user.saldoModal;
+      if (modal > curSaldo) {
+        Swal.fire({
+          title: 'Saldo Tidak Cukup!',
+          html: `
+            <div class="text-left space-y-2 text-xs">
+              <p class="text-red-400 font-bold">Laporan penjualan ditolak sistem.</p>
+              <p><strong>Harga Modal:</strong> Rp ${modal.toLocaleString('id-ID')}</p>
+              <p><strong>Sisa Saldo Anda:</strong> Rp ${curSaldo.toLocaleString('id-ID')}</p>
+              <p class="text-slate-400 mt-2">Nominal modal melebihi kapasitas saldo modal kerja Anda saat ini.</p>
+            </div>
+          `,
+          icon: 'error',
+          confirmButtonColor: '#ef4444'
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: 'Mengirim Laporan...',
+        text: 'Sedang memproses pemotongan saldo dan pencatatan transaksi.',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      callBackend('submitSale', state.user.username, produk, modal, jual)
+        .then(res => {
+          if (res.success) {
+            Swal.fire({
+              title: 'Laporan Berhasil!',
+              text: res.message,
+              icon: 'success',
+              confirmButtonColor: '#f97316'
+            });
+
+            // Reset Form & live profit
+            document.getElementById('form-submit-sale').reset();
+            calculateLiveProfit();
+
+            // Refresh Dashboard
+            loadAgentDashboard();
+          } else {
+            Swal.fire({
+              title: 'Laporan Ditolak',
+              text: res.message,
+              icon: 'error',
+              confirmButtonColor: '#ef4444'
+            });
+          }
+        })
+        .catch(err => {
+          Swal.fire({
+            title: 'Koneksi Bermasalah',
+            text: 'Gagal mengirimkan laporan penjualan ke server.',
+            icon: 'error',
+            confirmButtonColor: '#ef4444'
+          });
+        });
+    }
+
+    // FITUR EDIT TRANSAKSI (Sisi Agen & Admin)
+    function triggerEditSale(txId, namaProduk, modal, hargaJual) {
+      Swal.fire({
+        title: 'Edit Laporan Penjualan',
+        html: `
+          <div class="text-left space-y-4 text-xs">
+            <p class="text-slate-400 font-semibold mb-2">ID Transaksi: ${txId}</p>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Nama Produk / Pulsa</label>
+              <input type="text" id="edit-swal-produk" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-white" value="${namaProduk}">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Harga Modal (Rp)</label>
+                <input type="number" id="edit-swal-modal" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-white" value="${modal}">
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-300 uppercase mb-1">Harga Jual (Rp)</label>
+                <input type="number" id="edit-swal-jual" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-white" value="${hargaJual}">
+              </div>
+            </div>
+            <p class="text-[10px] text-slate-500 mt-2">NB: Edit nominal modal akan otomatis menyesuaikan ketersediaan saldo modal kerja agen.</p>
+          </div>
+        `,
+        showCancelButton: true,
+        confirmButtonColor: '#f97316',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Simpan Perubahan',
+        cancelButtonText: 'Batal',
+        preConfirm: () => {
+          const prod = document.getElementById('edit-swal-produk').value.trim();
+          const m = parseFloat(document.getElementById('edit-swal-modal').value);
+          const j = parseFloat(document.getElementById('edit-swal-jual').value);
+
+          if (!prod) {
+            Swal.showValidationMessage('Nama produk tidak boleh kosong!');
+            return false;
+          }
+          if (isNaN(m) || m <= 0 || isNaN(j) || j <= 0) {
+            Swal.showValidationMessage('Modal dan Jual harus bernilai positif!');
+            return false;
+          }
+          return { namaProduk: prod, modal: m, hargaJual: j };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const data = result.value;
+          Swal.fire({
+            title: 'Memproses Perubahan...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+          });
+
+          callBackend('editSale', txId, data.namaProduk, data.modal, data.hargaJual)
+            .then(res => {
+              if (res.success) {
+                Swal.fire({ title: 'Berhasil!', text: res.message, icon: 'success', confirmButtonColor: '#f97316' });
+                if (state.role === 'admin') {
+                  loadAdminDashboard();
+                } else {
+                  loadAgentDashboard();
+                }
+              } else {
+                Swal.fire({ title: 'Gagal', text: res.message, icon: 'error', confirmButtonColor: '#ef4444' });
+              }
+            })
+            .catch(err => {
+              Swal.fire({ title: 'Error', text: 'Terjadi kegagalan saat mengedit transaksi.', icon: 'error', confirmButtonColor: '#ef4444' });
+            });
+        }
+      });
+    }
+
+    // FITUR HAPUS TRANSAKSI (Sisi Agen & Admin)
+    function triggerDeleteSale(txId) {
+      Swal.fire({
+        title: 'Hapus Laporan Transaksi?',
+        text: 'Laporan ini akan dihapus secara permanen dari database. Saldo modal agen akan dikembalikan (refund) secara otomatis sesuai harga modal transaksi.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#475569',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Menghapus Transaksi...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+          });
+
+          callBackend('deleteSale', txId)
+            .then(res => {
+              if (res.success) {
+                Swal.fire({ title: 'Berhasil Dihapus!', text: res.message, icon: 'success', confirmButtonColor: '#f97316' });
+                if (state.role === 'admin') {
+                  loadAdminDashboard();
+                } else {
+                  loadAgentDashboard();
+                }
+              } else {
+                Swal.fire({ title: 'Gagal', text: res.message, icon: 'error', confirmButtonColor: '#ef4444' });
+              }
+            })
+            .catch(err => {
+              Swal.fire({ title: 'Error', text: 'Gagal menghapus transaksi dari database.', icon: 'error', confirmButtonColor: '#ef4444' });
+            });
+        }
+      });
+    }
+
+    // RENDER TABEL TRANSAKSI SISI AGEN
+    function renderAgentSalesTable(sales) {
+      const tbody = document.getElementById('agent-sales-tbody');
+      tbody.innerHTML = '';
+
+      if (!sales || sales.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="p-8 text-center text-slate-500 font-medium">
+              <i data-lucide="shopping-bag" class="w-8 h-8 mx-auto mb-2 opacity-30 text-yellow-500"></i>
+              Anda belum mengirim laporan penjualan hari ini.
+            </td>
+          </tr>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      // Urutkan transaksi terbaru di atas
+      sales.sort((a, b) => new Date(b.tanggalTransaksi) - new Date(a.tanggalTransaksi));
+
+      sales.forEach(s => {
+        const dateObj = new Date(s.tanggalTransaksi);
+        const formattedDate = dateObj.toLocaleDateString('id-ID', {day: '2-digit', month: 'short'}) + ' ' + 
+                              dateObj.toLocaleTimeString('id-ID', {hour: '2-digit', minute: '2-digit'});
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-900/40 border-b border-slate-800/40 transition-all";
+        tr.innerHTML = `
+          <td class="p-4 text-slate-400 font-medium">${formattedDate}</td>
+          <td class="p-4 text-white font-bold">${s.namaProduk}</td>
+          <td class="p-4 text-right text-slate-400">Rp ${s.modal.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-right text-slate-100 font-semibold">Rp ${s.hargaJual.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-right font-black text-emerald-400">Rp ${s.keuntungan.toLocaleString('id-ID')}</td>
+          <td class="p-4 text-center">
+            <div class="flex items-center justify-center gap-1.5">
+              <button onclick="triggerEditSale('${s.idTransaksi}', '${s.namaProduk}', ${s.modal}, ${s.hargaJual})" class="p-1.5 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 transition-all cursor-pointer">
+                <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="triggerDeleteSale('${s.idTransaksi}')" class="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-all cursor-pointer">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
